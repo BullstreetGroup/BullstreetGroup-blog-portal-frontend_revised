@@ -80,7 +80,7 @@ async function imageHandler() {
         }
       );
       // Get the image URL from the response
-      const imageUrl = `http://localhost:8000${response.data.data[0]}`;
+      const imageUrl = `${response.data.data.urls[0]}`;
       // Insert the image URL into the editor
       const range = this.quill.getSelection();
       this.quill.insertEmbed(range.index, 'image', imageUrl);
@@ -167,10 +167,10 @@ const Write = ({ editID }) => {
   
         // Append the relative path (ensure backend returns relative path)
         if(editPath){
-          formData.append("thumbnail", `${`http://localhost:8000`}${thumbnailResponse.data.data[0]}`);
+          formData.append("thumbnail", `${thumbnailResponse.data.data.urls[0]}`);
 
         } else {
-          formData.append("thumbnail", `${thumbnailResponse.data.data[0]}`);
+          formData.append("thumbnail", `${thumbnailResponse.data.data.urls[0]}`);
 
         }
       } else {
